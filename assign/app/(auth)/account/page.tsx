@@ -1,4 +1,4 @@
-import UserAccount from "../components/UserAccount";
+import UserAccount from "../../components/UserAccount";
 
 export default function amount(){
     return <UserAccount/>
