@@ -6,49 +6,49 @@ interface MainPageProps {}
 
 const cards = [
   {
-    src: "https://www.google.com/imgres?imgurl=https%3A%2F%2Fstatic.wikia.nocookie.net%2Fdoraemon%2Fimages%2F7%2F71%2FC0E297DC-08AE-43E6-841D-41E95B2FC8D0.jpeg%2Frevision%2Flatest%3Fcb%3D20181218213552%26path-prefix%3Den&tbnid=uD3FFFbWEpk4ZM&vet=12ahUKEwicgrrgiuyEAxVn4TgGHVM5ARAQMygCegQIARB1..i&imgrefurl=https%3A%2F%2Fdoraemon.fandom.com%2Fwiki%2FShizuka_Minamoto&docid=ylQTu8pvnNqOWM&w=1524&h=982&q=shizuka&ved=2ahUKEwicgrrgiuyEAxVn4TgGHVM5ARAQMygCegQIARB1",
+    src: "https://assets-global.website-files.com/634e7aa49f5b025e1fd9e87b/652039811875222115d77744_laptop-over-a-table.jpeg",
     alt: "photo",
     content:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic sed ea consequatur impedit consectetur magni adipisci odit nihil enim qui.",
   },
   {
-    src: "https://www.google.com/imgres?imgurl=https%3A%2F%2Fstatic.wikia.nocookie.net%2Fdoraemon%2Fimages%2F7%2F71%2FC0E297DC-08AE-43E6-841D-41E95B2FC8D0.jpeg%2Frevision%2Flatest%3Fcb%3D20181218213552%26path-prefix%3Den&tbnid=uD3FFFbWEpk4ZM&vet=12ahUKEwicgrrgiuyEAxVn4TgGHVM5ARAQMygCegQIARB1..i&imgrefurl=https%3A%2F%2Fdoraemon.fandom.com%2Fwiki%2FShizuka_Minamoto&docid=ylQTu8pvnNqOWM&w=1524&h=982&q=shizuka&ved=2ahUKEwicgrrgiuyEAxVn4TgGHVM5ARAQMygCegQIARB1",
+    src: "https://www.techsmith.com/blog/wp-content/uploads/2021/10/Customer-Camtasia-1-1024x481.png",
     alt: "photo",
     content:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic sed ea consequatur impedit consectetur magni adipisci odit nihil enim qui.",
   },
   {
-    src: "https://www.google.com/imgres?imgurl=https%3A%2F%2Fstatic.wikia.nocookie.net%2Fdoraemon%2Fimages%2F7%2F71%2FC0E297DC-08AE-43E6-841D-41E95B2FC8D0.jpeg%2Frevision%2Flatest%3Fcb%3D20181218213552%26path-prefix%3Den&tbnid=uD3FFFbWEpk4ZM&vet=12ahUKEwicgrrgiuyEAxVn4TgGHVM5ARAQMygCegQIARB1..i&imgrefurl=https%3A%2F%2Fdoraemon.fandom.com%2Fwiki%2FShizuka_Minamoto&docid=ylQTu8pvnNqOWM&w=1524&h=982&q=shizuka&ved=2ahUKEwicgrrgiuyEAxVn4TgGHVM5ARAQMygCegQIARB1",
+    src: "https://www.smartinsights.com/wp-content/uploads/2018/12/Wirecast.png",
     alt: "photo",
     content:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic sed ea consequatur impedit consectetur magni adipisci odit nihil enim qui.",
   },
   {
-    src: "https://www.google.com/imgres?imgurl=https%3A%2F%2Fstatic.wikia.nocookie.net%2Fdoraemon%2Fimages%2F7%2F71%2FC0E297DC-08AE-43E6-841D-41E95B2FC8D0.jpeg%2Frevision%2Flatest%3Fcb%3D20181218213552%26path-prefix%3Den&tbnid=uD3FFFbWEpk4ZM&vet=12ahUKEwicgrrgiuyEAxVn4TgGHVM5ARAQMygCegQIARB1..i&imgrefurl=https%3A%2F%2Fdoraemon.fandom.com%2Fwiki%2FShizuka_Minamoto&docid=ylQTu8pvnNqOWM&w=1524&h=982&q=shizuka&ved=2ahUKEwicgrrgiuyEAxVn4TgGHVM5ARAQMygCegQIARB1",
+    src: "https://www.techsmith.com/blog/wp-content/uploads/2017/02/video_creation_basics_production_board.jpg",
     alt: "photo",
     content:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic sed ea consequatur impedit consectetur magni adipisci odit nihil enim qui.",
   },
   {
-    src: "https://www.google.com/imgres?imgurl=https%3A%2F%2Fstatic.wikia.nocookie.net%2Fdoraemon%2Fimages%2F7%2F71%2FC0E297DC-08AE-43E6-841D-41E95B2FC8D0.jpeg%2Frevision%2Flatest%3Fcb%3D20181218213552%26path-prefix%3Den&tbnid=uD3FFFbWEpk4ZM&vet=12ahUKEwicgrrgiuyEAxVn4TgGHVM5ARAQMygCegQIARB1..i&imgrefurl=https%3A%2F%2Fdoraemon.fandom.com%2Fwiki%2FShizuka_Minamoto&docid=ylQTu8pvnNqOWM&w=1524&h=982&q=shizuka&ved=2ahUKEwicgrrgiuyEAxVn4TgGHVM5ARAQMygCegQIARB1",
+    src: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR19vJBRzuRIuk590LUvvWn5Xzk0FUtWG_sRg&usqp=CAU",
     alt: "photo",
     content:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic sed ea consequatur impedit consectetur magni adipisci odit nihil enim qui.",
   },
   {
-    src: "https://www.google.com/imgres?imgurl=https%3A%2F%2Fstatic.wikia.nocookie.net%2Fdoraemon%2Fimages%2F7%2F71%2FC0E297DC-08AE-43E6-841D-41E95B2FC8D0.jpeg%2Frevision%2Flatest%3Fcb%3D20181218213552%26path-prefix%3Den&tbnid=uD3FFFbWEpk4ZM&vet=12ahUKEwicgrrgiuyEAxVn4TgGHVM5ARAQMygCegQIARB1..i&imgrefurl=https%3A%2F%2Fdoraemon.fandom.com%2Fwiki%2FShizuka_Minamoto&docid=ylQTu8pvnNqOWM&w=1524&h=982&q=shizuka&ved=2ahUKEwicgrrgiuyEAxVn4TgGHVM5ARAQMygCegQIARB1",
+    src: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS8dVKHacaZCzC5-IimCFDxtF_Y5ROWBFMowi6JYyqfqlLeeNIMU4RLlmjVXwxmUY0weu8&usqp=CAU",
     alt: "photo",
     content:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic sed ea consequatur impedit consectetur magni adipisci odit nihil enim qui.",
   },
   {
-    src: "https://www.google.com/imgres?imgurl=https%3A%2F%2Fstatic.wikia.nocookie.net%2Fdoraemon%2Fimages%2F7%2F71%2FC0E297DC-08AE-43E6-841D-41E95B2FC8D0.jpeg%2Frevision%2Flatest%3Fcb%3D20181218213552%26path-prefix%3Den&tbnid=uD3FFFbWEpk4ZM&vet=12ahUKEwicgrrgiuyEAxVn4TgGHVM5ARAQMygCegQIARB1..i&imgrefurl=https%3A%2F%2Fdoraemon.fandom.com%2Fwiki%2FShizuka_Minamoto&docid=ylQTu8pvnNqOWM&w=1524&h=982&q=shizuka&ved=2ahUKEwicgrrgiuyEAxVn4TgGHVM5ARAQMygCegQIARB1",
+    src: "https://i0.wp.com/itbackups.sgp1.digitaloceanspaces.com/dekochiCDN/uploads/2022/11/15060010/motion-graphics-design-video-production.jpg?resize=770%2C433&ssl=1",
     alt: "photo",
     content:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic sed ea consequatur impedit consectetur magni adipisci odit nihil enim qui.",
   },
   {
-    src: "https://www.google.com/imgres?imgurl=https%3A%2F%2Fstatic.wikia.nocookie.net%2Fdoraemon%2Fimages%2F7%2F71%2FC0E297DC-08AE-43E6-841D-41E95B2FC8D0.jpeg%2Frevision%2Flatest%3Fcb%3D20181218213552%26path-prefix%3Den&tbnid=uD3FFFbWEpk4ZM&vet=12ahUKEwicgrrgiuyEAxVn4TgGHVM5ARAQMygCegQIARB1..i&imgrefurl=https%3A%2F%2Fdoraemon.fandom.com%2Fwiki%2FShizuka_Minamoto&docid=ylQTu8pvnNqOWM&w=1524&h=982&q=shizuka&ved=2ahUKEwicgrrgiuyEAxVn4TgGHVM5ARAQMygCegQIARB1",
+    src: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTnRfQWdis-AQDDtooBHjFuMo_rJT2SSfKpbQ&usqp=CAU",
     alt: "photo",
     content:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic sed ea consequatur impedit consectetur magni adipisci odit nihil enim qui.",
@@ -56,8 +56,9 @@ const cards = [
 ];
 const MainPage: React.FC<MainPageProps> = () => {
   return (
-    <div className="flex flex-col items-center  bg-gray-100">
+    <div className="flex flex-col w-full items-center  bg-gray-100">
       <div className=" p-8 rounded-lg shadow-md bg-white">
+        {/* User navbar  */}
         <div className="flex">
           <div>
             <h1 className="text-2xl font-semibold">Project</h1>
@@ -80,6 +81,7 @@ const MainPage: React.FC<MainPageProps> = () => {
         <br />
         <hr />
         <br />
+        {/* new video button and myVideo button */}
         <div className="flex justify-center items-center">
           <div className="flex items-center gap-3">
             <button>
@@ -101,6 +103,7 @@ const MainPage: React.FC<MainPageProps> = () => {
         <br />
         <br />
         <br />
+        {/* new video generation advertisement */}
         <div className="flex flex-col gap-4 lg:pl-20 lg:pr-20 m-4">
           <div className="flex items-center justify-center flex-col text-center gap-3 ">
             <div>
@@ -136,10 +139,10 @@ const MainPage: React.FC<MainPageProps> = () => {
           </div>
         </div>
         <br /> <br />
-        
+        {/* cart  */}
         <div className="flex flex-wrap justify-between gap-2">
           {cards.map((card, index) => (
-            <li key={index} className="w-1/5">
+            <ul key={index} className="w-1/5">
               <div className="bg-white rounded-lg shadow-md p-4">
                 <img
                   src={card.src}
@@ -149,7 +152,7 @@ const MainPage: React.FC<MainPageProps> = () => {
                 <h2 className="text-xl font-semibold mb-2">Card {index + 1}</h2>
                 <p>{card.content}</p>
               </div>
-            </li>
+            </ul>
           ))}
         </div>
       </div>
