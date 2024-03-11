@@ -33,4 +33,17 @@ const ClearButton = function () {
   );
 };
 
-export { SignInButton, GoogleInButton, ClearButton };
+const CrossButton = function () {
+  return (
+    <>
+      <button
+        type="button"
+        className=" p-1 text-red-600 mb-7 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 hover:bg-gray-200"
+      >
+        X
+      </button>
+    </>
+  );
+};
+
+export { SignInButton, GoogleInButton, ClearButton, CrossButton };
