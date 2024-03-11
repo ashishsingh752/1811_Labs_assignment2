@@ -46,4 +46,37 @@ const CrossButton = function () {
   );
 };
 
-export { SignInButton, GoogleInButton, ClearButton, CrossButton };
+const BuyButton = function () {
+  return (
+    <>
+      <button
+        type="button"
+        className=" p-2 w-full text-white bg-blue-500 border-t-blue-600 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 hover:bg-blue-600"
+      >
+        Buy
+      </button>
+    </>
+  );
+};
+
+const CancleButton = function () {
+  return (
+    <>
+      <button
+        type="button"
+        className="p-2 w-full text-black border-t-gray-300 rounded-md outline outline-offset-2 outline-gray-300 hover:bg-gray-200"
+      >
+        Cancel
+      </button>
+    </>
+  );
+};
+
+export {
+  SignInButton,
+  GoogleInButton,
+  ClearButton,
+  CrossButton,
+  BuyButton,
+  CancleButton,
+};
