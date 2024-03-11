@@ -5,7 +5,7 @@ interface UserProps {}
 
 const User: React.FC<UserProps> = () => {
   return (
-    <div className="flex items-center justify-center h-screen bg-gray-100">
+    <div className="flex items-center justify-center  w-full h-screen bg-gray-100">
       <div className="w-full max-w-sm p-8 rounded-lg shadow-md bg-white">
         <div className="flex items-center">
           <img

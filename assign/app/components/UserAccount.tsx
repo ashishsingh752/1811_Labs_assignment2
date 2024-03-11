@@ -1,6 +1,9 @@
 // Signup.tsx
 "use client";
 import React, { useState } from "react";
+import { CrossButton } from "./Button";
+
+
 
 interface UserAccountProps {}
 
@@ -31,12 +34,7 @@ const UserAccount: React.FC<UserAccountProps> = () => {
     </p>
   </div>
   <div className="flex ml-auto">
-    <button
-      type="button"
-      className=" rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 hover:bg-gray-200"
-    >
-      X
-    </button>
+  <CrossButton/>
   </div>
 </div>
 
