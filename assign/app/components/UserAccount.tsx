@@ -3,8 +3,6 @@
 import React, { useState } from "react";
 import { CrossButton } from "./Button";
 
-
-
 interface UserAccountProps {}
 
 const UserAccount: React.FC<UserAccountProps> = () => {
@@ -26,17 +24,17 @@ const UserAccount: React.FC<UserAccountProps> = () => {
   return (
     <div className="flex flex-col items-center justify-center w-full h-screen bg-gray-100">
       <div className="w-full max-w-2xl p-8 rounded-md shadow-md bg-white">
-      <div className="flex">
-  <div>
-    <h1 className="text-2xl font-bold mb-2">Account</h1>
-    <p className="mb-2">
-      Choose the avatar that best describes your use case describes your
-    </p>
-  </div>
-  <div className="flex ml-auto">
-  <CrossButton/>
-  </div>
-</div>
+        <div className="flex">
+          <div>
+            <h1 className="text-2xl font-bold mb-2">Account</h1>
+            <p className="mb-2">
+              Choose the avatar that best describes your use case describes your
+            </p>
+          </div>
+          <div className="flex ml-auto">
+            <CrossButton />
+          </div>
+        </div>
 
         <br />
         <hr />

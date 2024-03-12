@@ -1,35 +1,69 @@
 "use client";
-import React from "react";
-import { SignInButton, GoogleInButton } from "../components/Button";
+import React, { useEffect } from "react";
+import { GoogleInButton } from "../components/Button";
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
-import { useRouter } from "next/navigation";
+import { redirect, useRouter } from "next/navigation";
 import { useState } from "react";
-import { Database } from "firebase/database";
+import { User } from "next-auth";
 
 export default function SigninComponent() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [user, setUser] = useState<User | null>(null);
+  const [loading, setLoading] = useState(true);
   const router = useRouter();
 
   const supabase = createClientComponentClient();
 
+  useEffect(() => {
+    async function getUser() {
+      const {
+        data: { user },
+      } = await supabase.auth.getUser();
+      setUser(user);
+      setLoading(false);
+    }
+    getUser();
+  }, []);
+
+  console.log(loading, user);
+
   const handleSignUp = async () => {
-    await supabase.auth.signUp({
+    const res = await supabase.auth.signUp({
       email,
       password,
       options: {
         emailRedirectTo: `${location.origin}/auth/callback`,
       },
     });
+    setUser(res.data.user);
     router.refresh();
     setEmail("");
     setPassword("");
+    redirect("http://localhost:3000/signin");
   };
 
   const handleSignOut = async () => {
     await supabase.auth.signOut();
     router.refresh();
+    setUser(null);
   };
+
+  if (loading) {
+    return (
+      <div className="flex h-screen items-center justify-center">
+        <img
+          className="h-40 w-40"
+          src="https://media.tenor.com/_62bXB8gnzoAAAAj/loading.gif"
+          alt="Loading..."
+        />
+      </div>
+    );
+  }
+
+  if (user) {
+    redirect("http://localhost:3000/");
+  }
 
   return (
     <div className="flex min-h-screen items-center justify-center bg-gray-100">
@@ -109,7 +143,7 @@ export default function SigninComponent() {
         <p className="mt-6 text-center text-sm text-gray-500">
           have an account?{" "}
           <a
-            href=""
+            href={"/signin"}
             className="text-blue-600 hover:underline focus:outline-none"
           >
             Sign in

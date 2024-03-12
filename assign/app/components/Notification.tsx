@@ -5,7 +5,7 @@ interface NotificationsProps {}
 
 const Notifications: React.FC<NotificationsProps> = () => {
   return (
-    <div className="flex flex-col items-center justify-center w-full h-screen bg-gray-100">
+    <div className="flex flex-col items-center absolute justify-center w-auto h-auto bg-gray-100">
       <div className="w-full max-w-md p-8 rounded-lg shadow-md bg-white">
         <div className="flex">
           <div>

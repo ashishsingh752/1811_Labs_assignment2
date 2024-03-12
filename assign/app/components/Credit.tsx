@@ -3,7 +3,7 @@ import RangeInputExample from "./Range";
 
 const Credit = () => {
   return (
-    <div className="flex items-center justify-center h-screen bg-gray-100">
+    <div className="flex items-center justify-center absolute w-auto h-auto bg-gray-100">
       <div className="w-full max-w-2xl p-8 rounded-lg shadow-md bg-white relative">
         <div className="absolute mt-6 top-2 right-14">
           <CrossButton />

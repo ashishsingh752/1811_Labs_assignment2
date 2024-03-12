@@ -1,4 +1,6 @@
 "use client";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
 
 const SignInButton = function () {
   return (
@@ -21,10 +23,14 @@ const GoogleInButton = function () {
 };
 
 const ClearButton = function () {
+  const router = useRouter();
+  const handleOnClickClear = function () {
+    router.back();
+  };
   return (
     <>
       <button
-        type="button"
+        onClick={handleOnClickClear}
         className=" p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 hover:bg-gray-200"
       >
         Clear All
@@ -34,10 +40,14 @@ const ClearButton = function () {
 };
 
 const CrossButton = function () {
+  const router = useRouter();
+  const handleOnClickCross = function () {
+    router.replace('/');
+  };
   return (
     <>
       <button
-        type="button"
+        onClick={handleOnClickCross}
         className=" p-1 text-red-600 mb-7 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 hover:bg-gray-200"
       >
         X
@@ -45,6 +55,8 @@ const CrossButton = function () {
     </>
   );
 };
+
+
 
 const BuyButton = function () {
   return (
@@ -73,10 +85,11 @@ const CancleButton = function () {
 };
 
 const MainButton = function () {
+  const [isOpen, setIsOpen] = useState(false);
   return (
     <>
       <button
-        type="button"
+        onClick={()=>setIsOpen(prev=>!prev)}
         className="p-2 bg-red-100  text-black border-t-gray-300 rounded-md outline outline-offset-2 outline-gray-300 hover:bg-gray-200"
       >
         <div className="flex justify-center items-center gap-3">
@@ -124,6 +137,18 @@ const NewVideoButton = function () {
   );
 };
 
+const handleOnClickDirectToHome = function(){
+      const router  = useRouter();
+      const handleClick=()=>{
+         router.replace('/signup')
+      }
+      return <>
+        <button onClick={handleClick} >
+            Your or not loggin? Click Here
+        </button>
+      </>
+}
+
 export {
   SignInButton,
   GoogleInButton,
@@ -134,4 +159,5 @@ export {
   MainButton,
   NewVideoButton,
   MyVideoButton,
+  handleOnClickDirectToHome,
 };

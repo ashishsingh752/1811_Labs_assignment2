@@ -1,11 +1,28 @@
-import React from "react";
+"use client";
+import React, { useState } from "react";
 import { CrossButton } from "./Button";
+import { useRouter } from "next/navigation";
+import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 
 interface UserProps {}
 
 const User: React.FC<UserProps> = () => {
+  const [user, setUser] = useState(null);
+  const supabase = createClientComponentClient();
+  const router = useRouter();
+
+  const handleSignOut = async () => {
+    await supabase.auth.signOut();
+    router.refresh();
+    setUser(null);
+  };
+
+  const handleOnClickAccount = function () {
+    return router.replace("account");
+  };
+
   return (
-    <div className="flex items-center justify-center  w-full h-screen bg-gray-100">
+    <div className="flex items-center justify-center absolute w-auto h-auto bg-gray-100">
       <div className="w-full max-w-sm p-8 rounded-lg shadow-md bg-white">
         <div className="flex items-center">
           <img
@@ -22,7 +39,6 @@ const User: React.FC<UserProps> = () => {
             </div>
             <div className="email">ashishsingh.nitr@gmail.com</div>
           </div>
-
           <CrossButton />
         </div>
         <br />
@@ -33,7 +49,7 @@ const User: React.FC<UserProps> = () => {
               htmlFor="displayName"
               className="text-sm text-gray-500 font-"
             >
-              Account
+              <button onClick={handleOnClickAccount}>Account</button>
             </label>
           </div>
           <hr />
@@ -51,7 +67,7 @@ const User: React.FC<UserProps> = () => {
               htmlFor="displayName"
               className="text-sm text-gray-500 font-"
             >
-              Log Out
+              <button onClick={handleSignOut}>Log Out</button>
             </label>
           </div>
           <hr />
