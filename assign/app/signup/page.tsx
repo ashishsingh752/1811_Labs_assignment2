@@ -42,7 +42,7 @@ export default function SigninComponent() {
     router.refresh();
     setEmail("");
     setPassword("");
-    redirect("http://localhost:3000/");
+    redirect("/");
   };
 
   const handleSignOut = async () => {
@@ -66,7 +66,7 @@ export default function SigninComponent() {
   }
 
   if (user) {
-    redirect("http://localhost:3000/home");
+    router.push("/home");
   }
 
   return (

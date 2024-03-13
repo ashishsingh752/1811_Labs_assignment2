@@ -15,7 +15,7 @@ const User: React.FC<UserProps> = () => {
     await supabase.auth.signOut();
     router.refresh();
     setUser(null);
-    router.replace("http://localhost:3000/");
+    router.replace("/");
   };
 
   const handleOnClickAccount = function () {
