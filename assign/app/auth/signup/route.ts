@@ -13,7 +13,7 @@ export async function POST(request: Request) {
   const supabase = createRouteHandlerClient<Database>({ cookies: () => cookieStore })
 
   await supabase.auth.signUp({
-    email,
+     email, 
     password,
     options: {
       emailRedirectTo: `${requestUrl.origin}/auth/callback`,
