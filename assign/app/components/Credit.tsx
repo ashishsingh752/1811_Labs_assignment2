@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { CrossButton, CancleButton, BuyButton } from "./Button";
 import RangeInputExample from "./Range";
 
@@ -10,9 +11,11 @@ const Credit = () => {
         </div>
 
         <div className="flex justify-center items-center">
-          <img
+          <Image
             className="rounded-full w-14 h-14"
-            src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcRYaI1MmBYe7MHFRLoNH3m-4vkWSmtytZ6CWzddczL7Dnbq0M0u"
+            src={`https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcRYaI1MmBYe7MHFRLoNH3m-4vkWSmtytZ6CWzddczL7Dnbq0M0u`}
+            width={10}
+            height={10}
             alt="userImg"
           />
         </div>

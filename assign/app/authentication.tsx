@@ -16,7 +16,7 @@ export default async function CheckAuthentication() {
   if (!user) {
     return (
       <main>
-        <button>You'r not Login? click here to login.</button>
+        <button>You&apos;s not Login? click here to login.</button>
       </main>
     );
   }

@@ -5,6 +5,7 @@ import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import { redirect, useRouter } from "next/navigation";
 import { useState } from "react";
 import { User } from "@supabase/supabase-js";
+import Image from "next/image";
 
 export default function SigninComponent() {
   const [email, setEmail] = useState("");
@@ -32,10 +33,10 @@ export default function SigninComponent() {
       password,
     });
     setUser(res.data.user);
-    router.refresh();
+    // router.refresh();
     setEmail("");
     setPassword("");
-    router.replace("/");
+    router.replace("/home");
   };
 
   console.log(loading, user);
@@ -49,9 +50,11 @@ export default function SigninComponent() {
   if (loading) {
     return (
       <div className="flex h-screen items-center justify-center">
-        <img
+        <Image
           className="h-40 w-40"
-          src="https://media.tenor.com/_62bXB8gnzoAAAAj/loading.gif"
+          src={`https://media.tenor.com/_62bXB8gnzoAAAAj/loading.gif`}
+          width={40}
+          height={40}
           alt="Loading..."
         />
       </div>
@@ -59,7 +62,7 @@ export default function SigninComponent() {
   }
 
   if (user) {
-    redirect("http://localhost:3000/");
+    redirect("http://localhost:3000/home");
   }
 
   return (
@@ -67,7 +70,7 @@ export default function SigninComponent() {
       <div className="px-8 py-6 bg-white rounded-lg shadow-md text-left sm:w-1/2 md:w-1/3 lg:w-1/4">
         <h3 className="text-2xl font-bold text-center">Video fast</h3>
         <p className="text-gray-700 text-base mt-4 mb-6">
-          Let's get started by creating your account
+          Let&apos;s get started by creating your account
         </p>
         <div className="p2-4">
           <GoogleInButton />
@@ -144,7 +147,7 @@ export default function SigninComponent() {
           </button>
         </div>
         <p className="mt-6 text-center text-sm text-gray-500">
-          Don't have an account?{" "}
+          Don&apos;t have an account?{" "}
           <a
             href={"/signup"}
             className="text-blue-600 hover:underline focus:outline-none"

@@ -1,25 +1,8 @@
-// Signup.tsx
-"use client";
-import React, { useState } from "react";
 import { CrossButton } from "./Button";
 
 interface UserAccountProps {}
 
 const UserAccount: React.FC<UserAccountProps> = () => {
-  const [displayName, setDisplayName] = useState("");
-  const [emailAddress, setEmailAddress] = useState("");
-
-  const handleDisplayNameChange = (
-    event: React.ChangeEvent<HTMLInputElement>
-  ) => {
-    setDisplayName(event.target.value);
-  };
-
-  const handleEmailAddressChange = (
-    event: React.ChangeEvent<HTMLInputElement>
-  ) => {
-    setEmailAddress(event.target.value);
-  };
 
   return (
     <div className="flex flex-col items-center justify-center w-full h-screen bg-gray-100">
