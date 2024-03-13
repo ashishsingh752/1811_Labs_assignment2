@@ -66,7 +66,7 @@ export default function SigninComponent() {
   }
 
   if (user) {
-    router.push("/home");
+    redirect("/home");
   }
 
   return (

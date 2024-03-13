@@ -39,13 +39,13 @@ export default function SigninComponent() {
     router.replace("/home");
   };
 
-  console.log(loading, user);
+  // console.log(loading, user);
 
-  const handleSignOut = async () => {
-    await supabase.auth.signOut();
-    router.refresh();
-    setUser(null);
-  };
+  // const handleSignOut = async () => {
+  //   await supabase.auth.signOut();
+  //   router.refresh();
+  //   setUser(null);
+  // };
 
   if (loading) {
     return (
@@ -62,7 +62,7 @@ export default function SigninComponent() {
   }
 
   if (user) {
-    redirect("http://localhost:3000/home");
+    redirect("/home");
   }
 
   return (

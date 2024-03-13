@@ -16,7 +16,7 @@ export default async function CheckAuthentication(Components: any) {
       data: { user },
     } = await supabase.auth.getUser();
 
-    console.log(user);
+    // console.log(user);
 
     if (!user) {
       return redirect("/");
