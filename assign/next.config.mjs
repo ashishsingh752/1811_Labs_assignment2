@@ -31,9 +31,9 @@ const nextConfig = {
         hostname: "encrypted-tbn2.gstatic.com",
       },
     ],
-    eslint: {
-      ignoreDuringBuilds: true,
-  }
+  },
+  eslint: {
+    ignoreDuringBuilds: true,
   },
 };
 
