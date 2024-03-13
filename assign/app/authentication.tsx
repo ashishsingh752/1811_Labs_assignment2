@@ -1,21 +1,26 @@
+'use client'
 import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 import { redirect, useRouter } from "next/navigation";
 import { User } from "@supabase/supabase-js";
-import { cookies } from "next/headers";
+import { cookies, headers } from "next/headers";
 
-export default async function CheckAuthentication() {
-  const cookieStore = cookies();
-  const supabase = createServerComponentClient({ cookies: () => cookieStore });
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
-  console.log(user);
+export default async function CheckAuthentication(Components: any) {
+  const router = useRouter();
+  return async function CheckAuthentication(props: any) {
+    const cookieStore = cookies();
+    console.log(cookieStore);
+    const supabase = createServerComponentClient({
+      cookies: () => cookieStore,
+    });
+    const {
+      data: { user },
+    } = await supabase.auth.getUser();
 
-  if (!user) {
-    return (
-      <main>
-        <button>You&apos;s not Login? click here to login.</button>
-      </main>
-    );
-  }
+    console.log(user);
+
+    if (!user) {
+      return redirect("/");
+    }
+    return <Components {...props} />;
+  };
 }

@@ -40,7 +40,7 @@ const ClearButton = function () {
 const CrossButton = function () {
   const router = useRouter();
   const handleOnClickCross = function () {
-    router.replace("/");
+    router.back();
   };
   return (
     <>

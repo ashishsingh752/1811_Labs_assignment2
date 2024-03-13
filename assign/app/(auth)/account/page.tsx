@@ -1,5 +1,4 @@
-import UserAccount from "../../components/UserAccount";
-
-export default function amount(){
-    return <UserAccount/>
+import UserAccount from "@/app/components/UserAccount";
+export default function account() {
+  return <UserAccount />;
 }

@@ -1,6 +1,5 @@
 "use client";
 import React, { useState } from "react";
-import { CrossButton } from "./Button";
 import { useRouter } from "next/navigation";
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import Image from "next/image";
@@ -16,11 +15,11 @@ const User: React.FC<UserProps> = () => {
     await supabase.auth.signOut();
     router.refresh();
     setUser(null);
-    router.replace('http://localhost:3000/')
+    router.replace("http://localhost:3000/");
   };
 
   const handleOnClickAccount = function () {
-    return router.replace("account");
+    return router.push("/account");
   };
 
   return (
@@ -34,46 +33,48 @@ const User: React.FC<UserProps> = () => {
             height={10}
             alt="userImg"
           />
-          <div className="flex-1 ml-4">
-            <div className="flex justify-between items-center">
+          <div className="flex-1 ml-5">
+            <div className="flex justify-between items-center gap-4">
               <div className="name font-bold text-xl">Ashish Singh</div>
-              <div className="plan rounded-md p-1 mr-4 bg-gray-200">
+              <div className="plan rounded-md p-1 mr-2 bg-gray-200">
                 Premium
               </div>
             </div>
             <div className="email">ashishsingh.nitr@gmail.com</div>
           </div>
-          <CrossButton />
         </div>
         <br />
         <hr className="my-3" />
         <div className="flex flex-col gap-3">
-          <div className="flex items-center hover:bg-gray-100 p-2 rounded-lg">
-            <label
-              htmlFor="displayName"
-              className="text-gray-500 text-md  "
-            >
-              <button onClick={handleOnClickAccount}>Account</button>
+          <button
+            onClick={handleOnClickAccount}
+            className="flex items-center hover:bg-gray-100 p-2 rounded-lg"
+          >
+            <label htmlFor="displayName" className="text-gray-500 text-md  ">
+              <button>Account</button>
             </label>
-          </div>
+          </button>
           <hr />
-          <div className="flex items-center hover:bg-gray-100 p-2 rounded-lg">
+          <button className="flex items-center hover:bg-gray-100 p-2 rounded-lg">
             <label
               htmlFor="displayName"
               className="text-sm text-gray-500 font-"
             >
-              Support
+              <button>Support</button>
             </label>
-          </div>
+          </button>
           <hr />
-          <div className="flex items-center hover:bg-gray-100 p-2 rounded-lg">
+          <button
+            onClick={handleSignOut}
+            className="flex items-center hover:bg-gray-100 p-2 rounded-lg"
+          >
             <label
               htmlFor="displayName"
               className="text-sm text-gray-500 font-"
             >
-              <button onClick={handleSignOut}>Log Out</button>
+              <button className="text-red-600  font-semibold">Log out</button>
             </label>
-          </div>
+          </button>
           <hr />
         </div>
       </div>
