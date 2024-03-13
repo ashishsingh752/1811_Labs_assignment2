@@ -10,8 +10,6 @@ export default async function CheckAuthentication() {
     data: { user },
   } = await supabase.auth.getUser();
   console.log(user);
-  if (!user) {
-  }
 
   if (!user) {
     return (
@@ -20,8 +18,4 @@ export default async function CheckAuthentication() {
       </main>
     );
   }
-
-  //   if (user) {
-  //     redirect("http://localhost:3000/");
-  //   }
 }
