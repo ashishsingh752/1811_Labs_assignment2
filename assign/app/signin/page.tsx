@@ -6,12 +6,17 @@ import { redirect, useRouter } from "next/navigation";
 import { useState } from "react";
 import { User } from "@supabase/supabase-js";
 import Image from "next/image";
+import { AiFillEyeInvisible, AiFillEye } from "react-icons/ai";
 
 export default function SigninComponent() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
+  const [openPassword, setOpenPassword] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [formError, setFormError] = useState("");
+
   const router = useRouter();
 
   const supabase = createClientComponentClient();
@@ -27,25 +32,25 @@ export default function SigninComponent() {
     getUser();
   }, []);
 
-  const handleSignIn = async () => {
-    const res = await supabase.auth.signInWithPassword({
-      email,
-      password,
-    });
-    setUser(res.data.user);
-    // router.refresh();
-    setEmail("");
-    setPassword("");
-    router.replace("/home");
+  const handleSignIn = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setFormError("");
+    setSubmitting(true);
+    try {
+      const res = await supabase.auth.signInWithPassword({
+        email,
+        password,
+      });
+      setUser(res.data.user);
+      // router.refresh();
+      setEmail("");
+      setPassword("");
+      router.replace("/home");
+    } catch (err: any) {
+      console.error(err);
+      setFormError(err.toString());
+    }
   };
-
-  // console.log(loading, user);
-
-  // const handleSignOut = async () => {
-  //   await supabase.auth.signOut();
-  //   router.refresh();
-  //   setUser(null);
-  // };
 
   if (loading) {
     return (
@@ -85,71 +90,87 @@ export default function SigninComponent() {
           <span className="text-xl font-bold px-2">Sign In</span>
         </div>
 
-        <div className="mt-6">
-          <label
-            className="text-sm text-gray-700 font-medium block mb-2"
-            htmlFor="username"
-          >
-            Enter email *
-          </label>
-          <input
-            id="email"
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            className="w-full px-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-0"
-            placeholder="lets.join@videofast.com"
-          />
-        </div>
-
-        <div className="mt-6">
-          <label
-            className="text-sm text-gray-700 font-medium block mb-2"
-            htmlFor="password"
-          >
-            Set password *
-          </label>
-          <input
-            id="password"
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            className="w-full px-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-0"
-            placeholder="Password"
-          />
-        </div>
-
-        <div className="flex items-center justify-between mt-4">
-          <div className="flex items-center">
-            <input
-              type="checkbox"
-              id="remember-me"
-              className="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-2 focus:ring-blue-500"
-            />
-            <label htmlFor="remember-me" className="text-sm text-gray-700 ml-2">
-              Remember Me
+        <form onSubmit={handleSignIn}>
+          <div className="mt-6">
+            <label
+              className="text-sm text-gray-700 font-medium block mb-2"
+              htmlFor="username"
+            >
+              Enter email *
             </label>
+            <input
+              id="email"
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              className="w-full px-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-0"
+              placeholder="lets.join@videofast.com"
+            />
           </div>
-          <a
-            href="#"
-            className="text-sm text-blue-600 hover:underline focus:outline-none"
-          >
-            Forgot Password?
-          </a>
-        </div>
 
-        <div className="pt-4">
-          <button
-            onClick={handleSignIn}
-            className="w-full flex justify-center items-center py-2 px-4 text-sm font-medium text-center text-white bg-blue-700 rounded-md hover:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
-          >
-            Login
-          </button>
-        </div>
+          <div className="mt-6 relative">
+            <label
+              className="text-sm text-gray-700 font-medium block mb-2"
+              htmlFor="password"
+            >
+              Enter password *
+            </label>
+            <div className="flex">
+              <input
+                id="password"
+                type={openPassword ? "text" : "password"}
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                className="w-full px-4  py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-0"
+                placeholder="Password"
+              />
+              <div
+                style={{ cursor: "pointer" }}
+                className="absolute inset-y-0 right-0 pr-3 text-2xl pt-6 flex items-center"
+              >
+                <div onClick={() => setOpenPassword((prop) => !prop)}>
+                  {openPassword ? <AiFillEyeInvisible /> : <AiFillEye />}
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="flex items-center justify-between mt-4">
+            <div className="flex items-center">
+              <input
+                type="checkbox"
+                id="remember-me"
+                className="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-2 focus:ring-blue-500"
+              />
+              <label
+                htmlFor="remember-me"
+                className="text-sm text-gray-700 ml-2"
+              >
+                Remember Me
+              </label>
+            </div>
+            <a
+              href="#"
+              className="text-sm text-blue-600 hover:underline focus:outline-none"
+            >
+              Forgot Password?
+            </a>
+          </div>
+
+          <div className="pt-4">
+            <button
+              type="submit"
+              disabled={submitting}
+              className="w-full flex justify-center items-center py-2 px-4 text-sm font-medium text-center text-white bg-blue-700 rounded-md hover:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+            >
+              SignIn
+            </button>
+          </div>
+        </form>
         <p className="mt-6 text-center text-sm text-gray-500">
           Don&apos;t have an account?{" "}
           <a
-            href={"/signup"}
+            href={"/"}
             className="text-blue-600 hover:underline focus:outline-none"
           >
             Sign up

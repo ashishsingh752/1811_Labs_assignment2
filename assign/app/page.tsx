@@ -1,6 +1,6 @@
-import SigninComponent from "./signin/page";
 import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 import { cookies } from "next/headers";
+import SignUpComponent from "./signup/page";
 
 export default async function Home() {
   const cookieStore = cookies();
@@ -11,7 +11,7 @@ export default async function Home() {
 
   return (
     <main>
-      <SigninComponent />
+      <SignUpComponent />
     </main>
   );
 }
