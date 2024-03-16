@@ -12,11 +12,9 @@ export default async function CheckAuthentication(Components: any) {
     const supabase = createServerComponentClient({
       cookies: () => cookieStore,
     });
-    const {
-      data: { user },
-    } = await supabase.auth.getUser();
+    const { data: { user },} = await supabase.auth.getUser();
 
-    // console.log(user);
+    console.log(user);
 
     if (!user) {
       return redirect("/");

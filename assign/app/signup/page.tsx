@@ -8,9 +8,10 @@ import { User } from "next-auth";
 import Image from "next/image";
 import { AiFillEyeInvisible, AiFillEye } from "react-icons/ai";
 
-export default function SignUpComponent() {
+export default  function SignUpComponent() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [username, setUsername] = useState("");
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
   const [openPassword, setOpenPassword] = useState(false);
@@ -32,7 +33,7 @@ export default function SignUpComponent() {
     getUser();
   }, [supabase.auth]);
 
-  console.log(loading, user);
+  // console.log(loading, user);
 
   const handleSignUp = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -43,6 +44,7 @@ export default function SignUpComponent() {
         email,
         password,
         options: {
+               data: {DisplayName: username }, 
           emailRedirectTo: `${location.origin}/auth/callback`,
         },
       });
@@ -56,13 +58,29 @@ export default function SignUpComponent() {
       setFormError(err.toString());
     }
   };
+  
+  
+  const handleSignInWithGoogle = async () => {
+    // e.preventDefault();
+    setFormError("");
+    setSubmitting(true);
+    try {
+      const res = await supabase.auth.signInWithOAuth({
+        provider: "google",
+      });
+      router.refresh();
+    } catch (err: any) {
+      console.error(err);
+      setFormError(err.toString());
+    }
+  };
 
   if (loading) {
     return (
       <div className="flex h-screen items-center justify-center">
         <Image
           className="h-40 w-40"
-          src={`https://media.tenor.com/_62bXB8gnzoAAAAj/loading.gif`}
+          src={"https://media.tenor.com/_62bXB8gnzoAAAAj/loading.gif"}
           width={10}
           height={10}
           alt="Loading..."
@@ -83,7 +101,12 @@ export default function SignUpComponent() {
           Let&apos;s get started by creating your account
         </p>
         <div className="p2-4">
-          <GoogleInButton />
+          <button
+            onClick={handleSignInWithGoogle}
+            className="w-full flex justify-center items-center py-2 px-4 text-sm font-medium text-center text-white bg-blue-700 rounded-md hover:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+          >
+            Continue with Google
+          </button>
         </div>
         <div className="w-full flex items-center justify-between mt-4">
           <hr className="w-full bg-gray-300 border-0" />
@@ -94,11 +117,30 @@ export default function SignUpComponent() {
         <div className="w-full  flex items-center justify-center mt-2">
           <span className="text-xl font-bold px-2">Register</span>
         </div>
+
+        {/* form for the user registration*/}
         <form onSubmit={handleSignUp}>
           <div className="mt-6">
             <label
               className="text-sm text-gray-700 font-medium block mb-2"
               htmlFor="username"
+            >
+              Username *
+            </label>
+            <input
+              id="username"
+              type="username"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+              className="w-full px-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-0"
+              placeholder="username"
+            />
+          </div>
+
+          <div className="mt-6">
+            <label
+              className="text-sm text-gray-700 font-medium block mb-2"
+              htmlFor="email"
             >
               Enter email *
             </label>
@@ -139,21 +181,6 @@ export default function SignUpComponent() {
             </div>
           </div>
 
-          <div className="flex items-center justify-between mt-4">
-            <div className="flex items-center">
-              <input
-                type="checkbox"
-                id="remember-me"
-                className="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-2 focus:ring-blue-500"
-              />
-              <label
-                htmlFor="remember-me"
-                className="text-sm text-gray-700 ml-2"
-              >
-                Remember Me
-              </label>
-            </div>
-          </div>
 
           <div className="pt-4">
             <button
@@ -165,6 +192,7 @@ export default function SignUpComponent() {
             </button>
           </div>
         </form>
+        
         <p className="mt-6 text-center text-sm text-gray-500">
           have an account?{" "}
           <a

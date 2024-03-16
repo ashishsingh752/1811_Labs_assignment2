@@ -1,15 +1,32 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import Image from "next/image";
+import { User } from "@supabase/supabase-js";
+import {
+  createClientComponentClient,
+  createServerComponentClient,
+} from "@supabase/auth-helpers-nextjs";
 
 interface UserProps {}
 
-const User: React.FC<UserProps> = () => {
-  const [user, setUser] = useState(null);
-  const supabase = createClientComponentClient();
+const UserDetail: React.FC<UserProps> = () => {
+  const [user, setUser] = useState<User | null>(null);
   const router = useRouter();
+
+  const supabase = createClientComponentClient();
+
+  useEffect(() => {
+    supabase.auth
+      .getUser()
+      .then(({ data: { user } }) => {
+        setUser(user);
+      })
+      .catch((error) => {
+        // Handle error
+        console.error("Error fetching user:", error);
+      });
+  }, []);
 
   const handleSignOut = async () => {
     await supabase.auth.signOut();
@@ -21,6 +38,7 @@ const User: React.FC<UserProps> = () => {
   const handleOnClickAccount = function () {
     return router.push("/account");
   };
+  console.log(user?.user_metadata);
 
   return (
     <div className="flex items-center justify-center absolute w-auto h-auto bg-gray-100">
@@ -28,19 +46,21 @@ const User: React.FC<UserProps> = () => {
         <div className="flex items-center">
           <Image
             className="rounded-full w-14 h-14"
-            src={`https://www.svgrepo.com/show/384674/account-avatar-profile-user-11.svg`}
-            width={10}
-            height={10}
+            src={user?.user_metadata?.picture || 'https://www.svgrepo.com/show/384674/account-avatar-profile-user-11.svg'}
+            width={50}
+            height={50}
             alt="userImg"
           />
           <div className="flex-1 ml-5">
             <div className="flex justify-between items-center gap-4">
-              <div className="name font-bold text-xl">Ashish Singh</div>
+              <div className="name font-bold text-xl">
+                {user?.user_metadata?.full_name || 'Display name'}
+              </div>
               <div className="plan rounded-md p-1 mr-2 bg-gray-200">
                 Premium
               </div>
             </div>
-            <div className="email">ashishsingh.nitr@gmail.com</div>
+            <div className="email">{user?.user_metadata?.email || 'example@email.com'}</div>
           </div>
         </div>
         <br />
@@ -82,4 +102,4 @@ const User: React.FC<UserProps> = () => {
   );
 };
 
-export default User;
+export default UserDetail;

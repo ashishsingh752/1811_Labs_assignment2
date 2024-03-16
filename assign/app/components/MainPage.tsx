@@ -1,67 +1,95 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { MainButton, NewVideoButton } from "./Button";
 import { useRouter } from "next/navigation";
-import User from "./UserDropdown";
+import UserDetail from "./UserDropdown";
 import Notification from "../(auth)/notification/page";
 import Image from "next/image";
+import { User } from "@supabase/supabase-js";
+
+import {
+  createClientComponentClient,
+  createServerComponentClient,
+} from "@supabase/auth-helpers-nextjs";
 
 interface MainPageProps {}
 
 const cards = [
   {
-    address: "https://www.techsmith.com/blog/wp-content/uploads/2021/10/Customer-Camtasia-1-1024x481.png",
+    address:
+      "https://www.techsmith.com/blog/wp-content/uploads/2021/10/Customer-Camtasia-1-1024x481.png",
     alt: "photo",
     content:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic sed ea consequatur impedit consectetur magni adipisci odit nihil enim qui.",
   },
   {
-    address: "https://www.techsmith.com/blog/wp-content/uploads/2021/10/Customer-Camtasia-1-1024x481.png",
+    address:
+      "https://www.techsmith.com/blog/wp-content/uploads/2021/10/Customer-Camtasia-1-1024x481.png",
     alt: "photo",
     content:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic sed ea consequatur impedit consectetur magni adipisci odit nihil enim qui.",
   },
   {
-    address: "https://www.techsmith.com/blog/wp-content/uploads/2021/10/Customer-Camtasia-1-1024x481.png",
+    address:
+      "https://www.techsmith.com/blog/wp-content/uploads/2021/10/Customer-Camtasia-1-1024x481.png",
     alt: "photo",
     content:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic sed ea consequatur impedit consectetur magni adipisci odit nihil enim qui.",
   },
   {
-    address: "https://www.techsmith.com/blog/wp-content/uploads/2021/10/Customer-Camtasia-1-1024x481.png",
+    address:
+      "https://www.techsmith.com/blog/wp-content/uploads/2021/10/Customer-Camtasia-1-1024x481.png",
     alt: "photo",
     content:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic sed ea consequatur impedit consectetur magni adipisci odit nihil enim qui.",
   },
   {
-    address: "https://www.techsmith.com/blog/wp-content/uploads/2021/10/Customer-Camtasia-1-1024x481.png",
+    address:
+      "https://www.techsmith.com/blog/wp-content/uploads/2021/10/Customer-Camtasia-1-1024x481.png",
     alt: "photo",
     content:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic sed ea consequatur impedit consectetur magni adipisci odit nihil enim qui.",
   },
   {
-    address: "https://www.techsmith.com/blog/wp-content/uploads/2021/10/Customer-Camtasia-1-1024x481.png",
+    address:
+      "https://www.techsmith.com/blog/wp-content/uploads/2021/10/Customer-Camtasia-1-1024x481.png",
     alt: "photo",
     content:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic sed ea consequatur impedit consectetur magni adipisci odit nihil enim qui.",
   },
   {
-    address: "https://www.techsmith.com/blog/wp-content/uploads/2021/10/Customer-Camtasia-1-1024x481.png",
+    address:
+      "https://www.techsmith.com/blog/wp-content/uploads/2021/10/Customer-Camtasia-1-1024x481.png",
     alt: "photo",
     content:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic sed ea consequatur impedit consectetur magni adipisci odit nihil enim qui.",
   },
   {
-    address: "https://www.techsmith.com/blog/wp-content/uploads/2021/10/Customer-Camtasia-1-1024x481.png",
+    address:
+      "https://www.techsmith.com/blog/wp-content/uploads/2021/10/Customer-Camtasia-1-1024x481.png",
     alt: "photo",
     content:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic sed ea consequatur impedit consectetur magni adipisci odit nihil enim qui.",
   },
 ];
+
 const MainPage: React.FC<MainPageProps> = () => {
   const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
+  const [user, setUser] = useState<User | null>(null);
   const [isNotificationOpen, setisNotificationOpen] = useState(false);
+  const supabase = createClientComponentClient();
+  useEffect(() => {
+    supabase.auth
+      .getUser()
+      .then(({ data: { user } }) => {
+        setUser(user);
+      })
+      .catch((error) => {
+        // Handle error
+        console.error("Error fetching user:", error);
+      });
+  }, []);
   const handleOnClickUser = () => {
     setisNotificationOpen(false); // Close notification when opening user
     setIsOpen((prev) => !prev);
@@ -96,9 +124,9 @@ const MainPage: React.FC<MainPageProps> = () => {
               <button onClick={handleOnClickUser}>
                 <Image
                   className="rounded-full w-10 h-10"
-                  src={`https://www.svgrepo.com/show/384674/account-avatar-profile-user-11.svg`}
-                  width={10}
-                  height={10}
+                  src={user?.user_metadata?.picture || 'https://www.svgrepo.com/show/384674/account-avatar-profile-user-11.svg'}
+                  width={60}
+                  height={60}
                   alt="userImg"
                 />
               </button>
@@ -128,17 +156,15 @@ const MainPage: React.FC<MainPageProps> = () => {
                 {isNotificationOpen && <Notification />}
               </div>
 
-              <div className="pr-48 mb-36">{isOpen && <User />}</div>
+              <div className="pr-48 mb-36">{isOpen && <UserDetail />}</div>
               {/* </div> */}
               <NewVideoButton />
             </div>
           </div>
-    
           {/* new video generation advertisement */}
           <div className="flex flex-col gap-4 lg:pl-20 lg:pr-20 m-4">
             <div className="flex items-center justify-center flex-col text-center gap-3 ">
               <div>
-                
                 <Image
                   className="rounded-full w-14 h-14"
                   src={`https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTfCqouKSPvXJveSW0-zzXtUsuv9Tnlbhd1vQvlLf1HDhgat3RfjqcwGpT-jYxZPXM4q7g&usqp=CAU`}

@@ -1,6 +1,5 @@
 "use client";
 import { useEffect } from "react";
-import { GoogleInButton } from "../components/Button";
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import { redirect, useRouter } from "next/navigation";
 import { useState } from "react";
@@ -8,7 +7,7 @@ import { User } from "@supabase/supabase-js";
 import Image from "next/image";
 import { AiFillEyeInvisible, AiFillEye } from "react-icons/ai";
 
-export default function SigninComponent() {
+export default  function SigninComponent() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [user, setUser] = useState<User | null>(null);
@@ -42,7 +41,7 @@ export default function SigninComponent() {
         password,
       });
       setUser(res.data.user);
-      // router.refresh();
+      router.refresh();
       setEmail("");
       setPassword("");
       router.replace("/home");
@@ -51,6 +50,23 @@ export default function SigninComponent() {
       setFormError(err.toString());
     }
   };
+
+  const handleSignInWithGoogle = async () => {
+    // e.preventDefault();
+    setFormError("");
+    setSubmitting(true);
+    try {
+      const res = await supabase.auth.signInWithOAuth({
+        provider: "google",
+      });
+      router.refresh();
+    } catch (err: any) {
+      console.error(err);
+      setFormError(err.toString());
+    }
+  };
+
+  // console.log(user?.user_metadata?.full_name);
 
   if (loading) {
     return (
@@ -78,7 +94,12 @@ export default function SigninComponent() {
           Let&apos;s get started by creating your account
         </p>
         <div className="p2-4">
-          <GoogleInButton />
+          <button
+            onClick={handleSignInWithGoogle}
+            className="w-full flex justify-center items-center py-2 px-4 text-sm font-medium text-center text-white bg-blue-700 rounded-md hover:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+          >
+            Continue with Google
+          </button>
         </div>
         <div className="w-full flex items-center justify-between mt-4">
           <hr className="w-full bg-gray-300 border-0" />
