@@ -104,10 +104,6 @@ export default  function UserAccount() {
                 </div>
               </div>
 
-              <div className="flex items-center justify-between">
-                <span className="text-sm text-gray-500">Current Plan</span>
-                <span className="text-sm font-medium">Free</span>
-              </div>
 
               <div className="flex items-center rounded-md p-3 bg-gray-200">
                 <span className="text-sm text-gray-500">Your Credits = </span>

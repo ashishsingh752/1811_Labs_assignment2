@@ -52,19 +52,27 @@ export default  function SigninComponent() {
   };
 
   const handleSignInWithGoogle = async () => {
-    // e.preventDefault();
     setFormError("");
     setSubmitting(true);
     try {
       const res = await supabase.auth.signInWithOAuth({
         provider: "google",
       });
-      router.refresh();
+      if (res.error) {
+        throw new Error(res.error.message);
+      }
     } catch (err: any) {
       console.error(err);
       setFormError(err.toString());
     }
   };
+  
+  useEffect(() => {
+    if (user) {
+      router.push("/home"); // Redirect to the home page
+    }
+  }, [user]);
+  
 
   // console.log(user?.user_metadata?.full_name);
 
@@ -77,6 +85,7 @@ export default  function SigninComponent() {
           width={40}
           height={40}
           alt="Loading..."
+          priority={true}
         />
       </div>
     );

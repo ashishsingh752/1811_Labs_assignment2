@@ -123,8 +123,8 @@ const MainPage: React.FC<MainPageProps> = () => {
               </button>
               <button onClick={handleOnClickUser}>
                 <Image
-                  className="rounded-full w-10 h-10"
-                  src={user?.user_metadata?.picture || 'https://www.svgrepo.com/show/384674/account-avatar-profile-user-11.svg'}
+                  className="rounded-full w-10 h-10 outline outline-2 outline-gray-300"
+                  src={user?.user_metadata?.picture || 'https://media.istockphoto.com/id/1223671392/vector/default-profile-picture-avatar-photo-placeholder-vector-illustration.jpg?s=612x612&w=0&k=20&c=s0aTdmT5aU6b8ot7VKm11DeID6NctRCpB755rA1BIP0='}
                   width={60}
                   height={60}
                   alt="userImg"

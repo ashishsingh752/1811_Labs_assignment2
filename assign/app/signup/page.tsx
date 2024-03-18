@@ -49,31 +49,40 @@ export default  function SignUpComponent() {
         },
       });
       setUser(res.data.user);
-      router.refresh();
       setEmail("");
       setPassword("");
-      redirect("/signin");
+      router.refresh();
+      // router.replace("/signin");
     } catch (err: any) {
       console.error(err);
       setFormError(err.toString());
     }
   };
   
-  
+
+
   const handleSignInWithGoogle = async () => {
-    // e.preventDefault();
     setFormError("");
     setSubmitting(true);
     try {
       const res = await supabase.auth.signInWithOAuth({
         provider: "google",
       });
-      router.refresh();
+      if (res.error) {
+        throw new Error(res.error.message);
+      }
     } catch (err: any) {
       console.error(err);
       setFormError(err.toString());
     }
   };
+  
+  useEffect(() => {
+    if (user) {
+      router.push("/home"); // Redirect to the home page
+    }
+  }, [user]);
+  
 
   if (loading) {
     return (
@@ -84,6 +93,7 @@ export default  function SignUpComponent() {
           width={10}
           height={10}
           alt="Loading..."
+          priority={true}
         />
       </div>
     );
@@ -120,7 +130,7 @@ export default  function SignUpComponent() {
 
         {/* form for the user registration*/}
         <form onSubmit={handleSignUp}>
-          <div className="mt-6">
+          {/* <div className="mt-6">
             <label
               className="text-sm text-gray-700 font-medium block mb-2"
               htmlFor="username"
@@ -135,7 +145,7 @@ export default  function SignUpComponent() {
               className="w-full px-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-0"
               placeholder="username"
             />
-          </div>
+          </div> */}
 
           <div className="mt-6">
             <label

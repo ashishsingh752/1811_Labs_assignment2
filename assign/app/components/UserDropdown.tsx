@@ -45,10 +45,10 @@ const UserDetail: React.FC<UserProps> = () => {
       <div className="w-full max-w-sm p-8 rounded-lg shadow-md bg-white">
         <div className="flex items-center">
           <Image
-            className="rounded-full w-14 h-14"
-            src={user?.user_metadata?.picture || 'https://www.svgrepo.com/show/384674/account-avatar-profile-user-11.svg'}
-            width={50}
-            height={50}
+            className="rounded-full w-14 h-14 outline outline-2 outline-gray-300"
+            src={user?.user_metadata?.picture || 'https://media.istockphoto.com/id/1223671392/vector/default-profile-picture-avatar-photo-placeholder-vector-illustration.jpg?s=612x612&w=0&k=20&c=s0aTdmT5aU6b8ot7VKm11DeID6NctRCpB755rA1BIP0='}
+            width={60}
+            height={60}
             alt="userImg"
           />
           <div className="flex-1 ml-5">
