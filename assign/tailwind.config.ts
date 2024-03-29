@@ -7,7 +7,11 @@ const config: Config = {
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
-
+    extend: {
+      screens: {
+        '2xl': '1330px', // Custom breakpoint at 1440 pixels
+      },
+    },
   },
   plugins: [],
 };
